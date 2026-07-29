@@ -5,7 +5,7 @@ ENV SOCKS_PORT=1080
 ENV LOKINET_WORKER_THREADS=1
 ENV LOKINET_HOPS=3
 ENV LOKINET_PATHS=6
-ENV LOKINET_UPSTREAM_DNS=1.1.1.1
+ENV LOKINET_UPSTREAM_DNS=9.9.9.9
 
 # Added ca-certificates because slim images may not have it by default, which causes curl HTTPS certificate errors
 RUN apt-get update && apt-get install -y --no-install-recommends \

@@ -52,7 +52,7 @@ docker run -d \
   -e LOKINET_WORKER_THREADS=1 \
   -e LOKINET_HOPS=3 \
   -e LOKINET_PATHS=6 \
-  -e LOKINET_UPSTREAM_DNS=1.1.1.1 \
+  -e LOKINET_UPSTREAM_DNS=9.9.9.9 \
   -v lokinet-data:/var/lib/lokinet \
   --restart unless-stopped \
   ghcr.io/<your-github-username>/lokinet-proxy:latest
@@ -66,7 +66,7 @@ docker run -d \
 - `LOKINET_WORKER_THREADS` (default: `1`): CPU thread limit for Lokinet daemon (1-2 recommended for VPS to prevent resource exhaustion)
 - `LOKINET_HOPS` (default: `3`): Number of routing hops (affects latency and anonymity; 3 is a balance point, default is 4)
 - `LOKINET_PATHS` (default: `6`): Number of backup paths (affects smoothness of path switching)
-- `LOKINET_UPSTREAM_DNS` (default: `1.1.1.1`): Public DNS server for fallback resolution
+- `LOKINET_UPSTREAM_DNS` (default: `9.9.9.9`): Public DNS server for fallback resolution
 
 ### Docker Compose Configuration
 
@@ -98,14 +98,14 @@ environment:
   - LOKINET_WORKER_THREADS=1
   - LOKINET_HOPS=3
   - LOKINET_PATHS=6
-  - LOKINET_UPSTREAM_DNS=1.1.1.1
+  - LOKINET_UPSTREAM_DNS=9.9.9.9
 ```
 
 #### DNS Configuration
 ```yaml
 dns:
   - 127.3.2.1   # For resolving .loki darknet domains
-  - 1.1.1.1     # Backup DNS for fallback to public internet
+  - 9.9.9.9     # Backup DNS for fallback to public internet
 ```
 
 #### Data Persistence

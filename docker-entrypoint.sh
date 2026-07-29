@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "nameserver 127.3.2.1" > /tmp/resolv.conf
-echo "nameserver 1.1.1.1" >> /tmp/resolv.conf
+echo "nameserver 9.9.9.9" >> /tmp/resolv.conf
 cat /tmp/resolv.conf > /etc/resolv.conf || true
 echo "DNS forcibly set to 127.3.2.1"
 

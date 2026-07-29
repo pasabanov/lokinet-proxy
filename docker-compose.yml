@@ -30,7 +30,7 @@ services:
       # Backup path count (affects smoothness of switching, default is 6)
       - LOKINET_PATHS=6
       # Public DNS for fallback
-      - LOKINET_UPSTREAM_DNS=1.1.1.1
+      - LOKINET_UPSTREAM_DNS=9.9.9.9
 
     ports:
       # [Local Testing Instructions]
@@ -44,7 +44,7 @@ services:
 
     dns:
       - 127.3.2.1   # For resolving .loki darknet domains
-      - 1.1.1.1     # Backup DNS for fallback to public internet
+      - 9.9.9.9     # Backup DNS for fallback to public internet
 
     volumes:
       # Persist Lokinet's node keys and state data to prevent identity reset after restart
