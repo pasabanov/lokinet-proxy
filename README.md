@@ -309,7 +309,6 @@ docker-compose exec lokinet sysctl net.ipv6.conf.all.disable_ipv6
 - ✅ Persists node keys to prevent identity reset
 - ✅ Generates configuration dynamically from environment variables
 - ⚠️ SOCKS5 proxy is not authenticated by default - restrict network access accordingly
-- ⚠️ DNS queries to `.loki` domains are resolved through Lokinet's DNS server
 
 ## Building Locally
 
