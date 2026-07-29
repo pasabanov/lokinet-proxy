@@ -1,11 +1,6 @@
 name: Build and Publish Lokinet Docker Image
 
 on:
-  push:
-    branches: [ "main" ]
-  schedule:
-    # Run automatically every day at 2 AM UTC
-    - cron: '0 2 * * *'
   workflow_dispatch:
 
 env:
