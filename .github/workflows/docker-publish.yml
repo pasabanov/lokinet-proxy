@@ -44,9 +44,9 @@ jobs:
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/repos/${{ github.repository }}/actions/workflows/docker-publish.yml/runs?status=success&per_page=1")
-          
+
           PREVIOUS_SHA=$(echo "$RESPONSE" | jq -r '.workflow_runs[0].head_commit.id // "none"')
-          
+
           echo "previous_sha=$PREVIOUS_SHA" >> $GITHUB_OUTPUT
           echo "Previous successful commit: $PREVIOUS_SHA"
 
@@ -57,19 +57,19 @@ jobs:
           CURRENT_SHA=${{ github.sha }}
           PREVIOUS_SHA=${{ steps.previous_build.outputs.previous_sha }}
           IMAGE_NAME=${{ env.IMAGE_NAME }}
-          
+
           echo "Current commit SHA: $CURRENT_SHA"
           echo "Previous commit SHA: $PREVIOUS_SHA"
           echo "Upstream version: $VERSION"
-          
+
           # Check if version exists in registry
           RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
             "https://ghcr.io/v2/$IMAGE_NAME/manifests/$VERSION" \
             -H "Accept: application/vnd.docker.distribution.manifest.v2+json")
-          
+
           BUILD_NEEDED=false
           BUILD_REASON=""
-          
+
           if [ "$RESPONSE" != "200" ]; then
             BUILD_NEEDED=true
             BUILD_REASON="New upstream version detected"
@@ -77,7 +77,7 @@ jobs:
           else
             echo "✓ Version $VERSION already exists in registry"
           fi
-          
+
           # Check if there are new commits since last build
           if [ "$CURRENT_SHA" != "$PREVIOUS_SHA" ] && [ "$PREVIOUS_SHA" != "none" ]; then
             BUILD_NEEDED=true
@@ -92,10 +92,10 @@ jobs:
             BUILD_NEEDED=true
             BUILD_REASON="Initial build"
           fi
-          
+
           echo "build_needed=$BUILD_NEEDED" >> $GITHUB_OUTPUT
           echo "build_reason=$BUILD_REASON" >> $GITHUB_OUTPUT
-          
+
           if [ "$BUILD_NEEDED" = "true" ]; then
             echo "🔨 Build will proceed: $BUILD_REASON"
           else

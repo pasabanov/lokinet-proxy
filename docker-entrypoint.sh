@@ -41,12 +41,12 @@ socksmethod: none
 user.privileged: root
 user.notprivileged: nobody
 client pass {
-    from: 0.0.0.0/0 to: 0.0.0.0/0
-    log: connect error
+	from: 0.0.0.0/0 to: 0.0.0.0/0
+	log: connect error
 }
 socks pass {
-    from: 0.0.0.0/0 to: 0.0.0.0/0
-    log: connect error
+	from: 0.0.0.0/0 to: 0.0.0.0/0
+	log: connect error
 }
 EOF
 
