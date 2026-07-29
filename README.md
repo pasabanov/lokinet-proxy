@@ -48,7 +48,7 @@ docker run -d \
   --cap-add NET_BIND_SERVICE \
   --device /dev/net/tun:/dev/net/tun \
   --sysctl net.ipv6.conf.all.disable_ipv6=0 \
-  -e SOCKS_PORT=1080 \
+  -e SOCKS_PORT=1051 \
   -e LOKINET_WORKER_THREADS=1 \
   -e LOKINET_HOPS=3 \
   -e LOKINET_PATHS=6 \
@@ -62,7 +62,7 @@ docker run -d \
 
 ### Environment Variables
 
-- `SOCKS_PORT` (default: `1080`): The port on which the SOCKS5 proxy listens inside the container
+- `SOCKS_PORT` (default: `1051`): The port on which the SOCKS5 proxy listens inside the container
 - `LOKINET_WORKER_THREADS` (default: `1`): CPU thread limit for Lokinet daemon (1-2 recommended for VPS to prevent resource exhaustion)
 - `LOKINET_HOPS` (default: `3`): Number of routing hops (affects latency and anonymity; 3 is a balance point, default is 4)
 - `LOKINET_PATHS` (default: `6`): Number of backup paths (affects smoothness of path switching)
@@ -94,7 +94,7 @@ sysctls:
 #### Environment Variables
 ```yaml
 environment:
-  - SOCKS_PORT=1080
+  - SOCKS_PORT=1051
   - LOKINET_WORKER_THREADS=1
   - LOKINET_HOPS=3
   - LOKINET_PATHS=6
@@ -122,14 +122,14 @@ By default, the SOCKS5 port is exposed to localhost only. Choose one of these ap
 The default configuration exposes the port only to localhost:
 ```yaml
 ports:
-  - "127.0.0.1:1080:1080"
+  - "127.0.0.1:1051:1051"
 ```
 
 #### Integration with Other Containers
-If using with Xray/Marzban on the same Docker network, comment out the ports section and access via `lokinet:1080` directly:
+If using with Xray/Marzban on the same Docker network, comment out the ports section and access via `lokinet:1051` directly:
 ```yaml
 # ports:
-#   - "127.0.0.1:1080:1080"
+#   - "127.0.0.1:1051:1051"
 ```
 
 #### Custom Network
@@ -172,12 +172,12 @@ environment:
 ### Using with curl
 ```bash
 # Test SOCKS5 proxy (if port is exposed)
-curl --socks5 127.0.0.1:1080 https://example.com
+curl --socks5 127.0.0.1:1051 https://example.com
 ```
 
 ### Using with Firefox
 1. Open Firefox Preferences → Network Settings
-2. Configure SOCKS5 proxy: `127.0.0.1:1080`
+2. Configure SOCKS5 proxy: `127.0.0.1:1051`
 3. Enable "Proxy DNS when using SOCKS v5"
 
 ### Integration with Xray/Marzban
@@ -191,7 +191,7 @@ If running Xray/Marzban in the same Docker network:
       "servers": [
         {
           "address": "lokinet",
-          "port": 1080
+          "port": 1051
         }
       ]
     }
@@ -264,7 +264,7 @@ ls -la /dev/net/tun
 docker-compose exec lokinet ps aux | grep danted
 
 # Test connectivity
-docker-compose exec lokinet curl --socks5 127.0.0.1:1080 https://example.com
+docker-compose exec lokinet curl --socks5 127.0.0.1:1051 https://example.com
 ```
 
 ### DNS resolution issues
