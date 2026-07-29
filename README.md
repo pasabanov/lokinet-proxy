@@ -324,12 +324,6 @@ docker-compose up -d
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Support
-
-If this Docker image saved you time or helped you deploy a Lokinet node easily, consider supporting the development:
-
-See [DONATE.md](DONATE.md) for donation options and crypto addresses.
-
 ## References
 
 - [Lokinet Official Website](https://lokinet.io/)
