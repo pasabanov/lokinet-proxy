@@ -31,6 +31,8 @@ services:
       - LOKINET_PATHS=6
       # Public DNS for fallback
       - LOKINET_UPSTREAM_DNS=9.9.9.9
+      # Exit node for clearnet access (leave empty to disable clearnet access)
+      - LOKINET_EXIT_NODE=exit.loki
 
     ports:
       # [Local Testing Instructions]

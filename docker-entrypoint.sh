@@ -18,6 +18,7 @@ worker-threads=${LOKINET_WORKER_THREADS}
 hops=${LOKINET_HOPS}
 paths=${LOKINET_PATHS}
 persist-addrmap-file=/var/lib/lokinet/addrmap.dat
+exit-node=${LOKINET_EXIT_NODE}
 
 [dns]
 upstream=${LOKINET_UPSTREAM_DNS}

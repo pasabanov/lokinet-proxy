@@ -6,6 +6,7 @@ ENV LOKINET_WORKER_THREADS=1
 ENV LOKINET_HOPS=3
 ENV LOKINET_PATHS=6
 ENV LOKINET_UPSTREAM_DNS=9.9.9.9
+ENV LOKINET_EXIT_NODE=exit.loki
 
 # Added ca-certificates because slim images may not have it by default, which causes curl HTTPS certificate errors
 RUN apt-get update && apt-get install -y --no-install-recommends \

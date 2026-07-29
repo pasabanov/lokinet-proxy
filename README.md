@@ -54,6 +54,7 @@ docker run -d \
   -e LOKINET_HOPS=3 \
   -e LOKINET_PATHS=6 \
   -e LOKINET_UPSTREAM_DNS=9.9.9.9 \
+  -e LOKINET_EXIT_NODE=exit.loki \
   -v lokinet-data:/var/lib/lokinet \
   --restart unless-stopped \
   ghcr.io/pasabanov/lokinet-proxy:latest
@@ -68,6 +69,7 @@ docker run -d \
 - `LOKINET_HOPS` (default: `3`): Number of routing hops (affects latency and anonymity; 3 is a balance point, default is 4)
 - `LOKINET_PATHS` (default: `6`): Number of backup paths (affects smoothness of path switching)
 - `LOKINET_UPSTREAM_DNS` (default: `9.9.9.9`): Public DNS server for fallback resolution
+- `LOKINET_EXIT_NODE` (default: `exit.loki`): Address and an optional ip range to use as an exit broker (the gateway to clearnet). Leave it empty to restrict any connections to clearnet
 
 ### Docker Compose Configuration
 
@@ -100,6 +102,7 @@ environment:
   - LOKINET_HOPS=3
   - LOKINET_PATHS=6
   - LOKINET_UPSTREAM_DNS=9.9.9.9
+  - LOKINET_EXIT_NODE=exit.loki
 ```
 
 #### DNS Configuration
