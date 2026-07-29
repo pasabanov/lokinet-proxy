@@ -20,13 +20,13 @@ This project provides an optimized **Docker** container that runs **Lokinet** as
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/soren-work/lokinet-proxy.git
+git clone https://github.com/pasabanov/lokinet-proxy
 cd lokinet-proxy
 ```
 
 2. Update the image address in `docker-compose.yml`:
 ```yaml
-image: ghcr.io/soren-work/lokinet-proxy:latest
+image: ghcr.io/pasabanov/lokinet-proxy:latest
 ```
 
 3. Start the container:
@@ -56,7 +56,7 @@ docker run -d \
   -e LOKINET_UPSTREAM_DNS=9.9.9.9 \
   -v lokinet-data:/var/lib/lokinet \
   --restart unless-stopped \
-  ghcr.io/<your-github-username>/lokinet-proxy:latest
+  ghcr.io/pasabanov/lokinet-proxy:latest
 ```
 
 ## Configuration
@@ -242,11 +242,11 @@ This repository includes a GitHub Actions workflow that:
 - Tags images with: `latest`, version number (e.g., `0.9.11`), and commit SHA
 - Supports manual workflow dispatch for on-demand builds
 
-### Image Tags
+### Image Tag Examples
 
-- `ghcr.io/<username>/lokinet-proxy:latest` - Latest release
-- `ghcr.io/<username>/lokinet-proxy:0.9.11` - Specific version
-- `ghcr.io/<username>/lokinet-proxy:abc1234` - Specific commit
+- `ghcr.io/pasabanov/lokinet-proxy:latest` - Latest release
+- `ghcr.io/pasabanov/lokinet-proxy:0.9.11` - Specific version
+- `ghcr.io/pasabanov/lokinet-proxy:abc1234` - Specific commit
 
 ## Troubleshooting
 

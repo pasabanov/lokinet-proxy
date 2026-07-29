@@ -1,8 +1,8 @@
 services:
   lokinet:
     # Replace the image address here with the actual address built through GitHub Actions
-    # Example: ghcr.io/soren-work/lokinet-proxy:latest
-    image: ghcr.io/soren-work/lokinet-proxy:latest
+    # Example: ghcr.io/pasabanov/lokinet-proxy:latest
+    image: ghcr.io/pasabanov/lokinet-proxy:latest
     container_name: lokinet
 
     # Follow the principle of least privilege, do not use privileged: true
