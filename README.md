@@ -48,6 +48,7 @@ docker run -d \
   --cap-add NET_BIND_SERVICE \
   --device /dev/net/tun:/dev/net/tun \
   --sysctl net.ipv6.conf.all.disable_ipv6=0 \
+  -p 127.0.0.1:1051:1051 \
   -e SOCKS_PORT=1051 \
   -e LOKINET_WORKER_THREADS=1 \
   -e LOKINET_HOPS=3 \
