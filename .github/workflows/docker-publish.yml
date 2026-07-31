@@ -39,7 +39,7 @@ jobs:
           VERSION_TAG=$(git tag --points-at "$COMMIT_SHA" --list 'v*' --sort=-v:refname | head -n1)
           LATEST_TAG=$(git tag --list 'v*' --sort=-v:refname | head -n1)
 
-          TAGS='type=sha,format=short'
+          TAGS='type=sha,format=short'$'\n''type=sha,format=long'
 
           if [ -n "$VERSION_TAG" ]; then
             TAGS="$TAGS"$'\n'"type=raw,value=${VERSION_TAG#v}"
