@@ -245,7 +245,7 @@ The `docker-entrypoint.sh` script performs the following steps:
 
 - **Base Image**: `debian:bookworm-slim`
 - **Size**: Optimized for minimal footprint
-- **Build dependencies**: curl, ca-certificates
+- **Build dependencies**: ca-certificates
 - **Dependencies**: iproute2, dante-server
 - **Lokinet Source**: Official Oxen repository (bookworm)
 

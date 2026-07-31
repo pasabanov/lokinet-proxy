@@ -8,14 +8,17 @@ ENV LOKINET_PATHS=6
 ENV LOKINET_UPSTREAM_DNS=9.9.9.9
 ENV LOKINET_EXIT_NODE=exit.loki
 
-# Added ca-certificates because slim images may not have it by default, which causes curl HTTPS certificate errors
+# Installing build dependency
+# ca-certificates are needed to validate the HTTPS connection to the Oxen repository
+RUN apt-get update && apt-get install -y ca-certificates
+
+COPY apt/oxen.gpg /etc/apt/keyrings/oxen.gpg
+COPY apt/oxen.sources /etc/apt/sources.list.d/oxen.sources
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
-	curl ca-certificates iproute2 dante-server && \
-	curl -so /etc/apt/trusted.gpg.d/oxen.gpg https://deb.oxen.io/pub.gpg && \
-	echo 'deb https://deb.oxen.io bookworm main' > /etc/apt/sources.list.d/oxen.list && \
-	apt-get update && apt-get install -y --no-install-recommends lokinet && \
-	# Removing build dependencies
-	apt-get purge --auto-remove -y curl ca-certificates && \
+	lokinet iproute2 dante-server && \
+	# Removing build dependency
+	apt-get purge --auto-remove -y ca-certificates && \
 	# Clean apt cache, this step is key to keeping the image small
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
