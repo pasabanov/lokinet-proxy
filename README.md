@@ -185,10 +185,16 @@ environment:
 curl --socks5-hostname 127.0.0.1:1051 https://example.com
 ```
 
-### Using with Firefox
-1. Open Firefox Preferences → Network Settings
+### Using with Firefox (or its forks)
+1. Open Browser Preferences → Network Settings
 2. Configure SOCKS5 proxy: `127.0.0.1:1051`
 3. Enable "Proxy DNS when using SOCKS v5"
+
+Additional settings for maximum privacy:
+
+4. Open `about:config` page
+5. Find `network.proxy.allow_bypass`
+6. Switch it to `false`
 
 ### Integration with Xray/Marzban
 If running Xray/Marzban in the same Docker network:
