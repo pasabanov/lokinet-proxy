@@ -9,7 +9,7 @@ This project provides an optimized **Docker** container that runs **Lokinet** as
 - 🔒 **Privacy-First**: Route your traffic through Lokinet's decentralized network
 - 🐳 **Docker Native**: Simple containerized deployment with Docker and Docker Compose
 - 📦 **Lightweight**: Based on Debian Bookworm slim image, optimized for low resource usage
-- 🔄 **Auto-Updates**: GitHub Actions workflow automatically builds images with the latest Lokinet releases
+- 🔄 **Auto-Updates**: GitHub Actions workflow automatically builds images with the latest commits
 - 🛡️ **Secure by Default**: Uses principle of least privilege with minimal required capabilities
 - 🌐 **SOCKS5 Proxy**: Built-in Dante SOCKS5 server for easy integration with other services
 - ⚙️ **Configurable**: Fine-tune Lokinet behavior with environment variables
@@ -41,9 +41,15 @@ docker-compose logs lokinet
 
 ### Using Docker CLI
 
+1. Pull the image:
+```bash
+docker pull ghcr.io/pasabanov/lokinet-proxy:latest
+```
+
+2. Run a container from the image:
 ```bash
 docker run -d \
-  --name lokinet \
+  --name lokinet-proxy \
   --cap-add NET_ADMIN \
   --cap-add NET_BIND_SERVICE \
   --device /dev/net/tun:/dev/net/tun \
@@ -176,7 +182,7 @@ environment:
 ### Using with curl
 ```bash
 # Test SOCKS5 proxy (if port is exposed)
-curl --socks5 127.0.0.1:1051 https://example.com
+curl --socks5-hostname 127.0.0.1:1051 https://example.com
 ```
 
 ### Using with Firefox
@@ -241,8 +247,7 @@ The `docker-entrypoint.sh` script performs the following steps:
 
 This repository includes a GitHub Actions workflow that:
 
-- Checks for new Lokinet releases daily (2 AM UTC)
-- Automatically builds and publishes Docker images to GitHub Container Registry
+- Automatically builds and publishes Docker images to GitHub Container Registry upon pushes to the `main` branch
 - Tags images with: `latest`, version number (e.g., `0.9.11`), and commit SHA
 - Supports manual workflow dispatch for on-demand builds
 
@@ -269,7 +274,7 @@ ls -la /dev/net/tun
 docker-compose exec lokinet ps aux | grep danted
 
 # Test connectivity
-docker-compose exec lokinet curl --socks5 127.0.0.1:1051 https://example.com
+docker-compose exec lokinet curl --socks5-hostname 127.0.0.1:1051 https://example.com
 ```
 
 ### DNS resolution issues
@@ -323,6 +328,10 @@ docker build -t lokinet-proxy:local .
 # Run with Docker Compose
 docker-compose up -d
 ```
+
+## License
+
+See the [LICENSE](LICENSE) file.
 
 ## References
 
